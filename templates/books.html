@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="/static/style.css">
+
+<h2>Available Books</h2>
+
+<table border="1" align="center" cellpadding="8">
+<tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Status</th>
+    <th>Action</th>
+</tr>
+
+{% for book in books %}
+<tr>
+    <td>{{ book[0] }}</td>
+    <td>{{ book[1] }}</td>
+    <td>{{ book[2] }}</td>
+    <td>
+        {% if book[3] == 1 %}
+            Available
+        {% else %}
+            Borrowed
+        {% endif %}
+    </td>
+    <td>
+        {% if book[3] == 1 %}
+            Available
+            <a href="/borrow/{{ book[0] }}">Borrow</a>
+        {% else %}
+            Borrowed
+            <a href="/return/{{ book[0] }}">Return</a>
+        {% endif %}
+    </td>
+</tr>
+{% endfor %}
+</table>
